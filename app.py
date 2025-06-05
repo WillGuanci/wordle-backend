@@ -3,6 +3,7 @@ from flask_cors import CORS
 from collections import Counter
 from collections import defaultdict
 import math
+import os
 
 def calculate_entropy(candidate_words, remaining_words, valid_solutions=None):
     def get_feedback_pattern(guess, solution):
@@ -122,4 +123,5 @@ def reset_words():
     return jsonify({'status': 'reset'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
